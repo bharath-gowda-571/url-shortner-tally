@@ -13,11 +13,9 @@ export class NavbarComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // console.log(this._router.url)
   }
   
   switchStyleOfNavs(choice:number){
-    // console.log(this._router.url)
 
     switch(choice){
       case 0:
