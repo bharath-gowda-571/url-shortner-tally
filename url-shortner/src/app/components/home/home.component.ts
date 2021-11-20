@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { DeviceDetectorService } from 'ngx-device-detector'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +11,14 @@ import { DeviceDetectorService } from 'ngx-device-detector'
 export class HomeComponent implements OnInit {
 
   device!:any
-  constructor( private detector:DeviceDetectorService) { }
+  constructor( private detector:DeviceDetectorService,private _router:Router) { }
+    
 
   ngOnInit(): void {
     this.device = this.detector
+    if(localStorage.getItem("user")!==null){
+      this._router.navigate(['/dashboard'])
+    }
   }
 
 }

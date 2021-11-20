@@ -1,0 +1,31 @@
+
+<app-navbar></app-navbar>
+<div class="form">
+    <h1> Sign Up</h1>
+    <div class="input-group">
+        <span class="input-group-text">First and Last name</span>
+        <input type="text" aria-label="First name" class="form-control" #firstname>
+        <input type="text" aria-label="Last name" class="form-control" #lastname>
+    </div>
+    <div class="spacer"></div>
+    <div class="input-group">
+        <span class="input-group-text">Email Address</span>
+        <input type="text" aria-label="Email" class="form-control" #emailSignup>
+    </div>
+    <div class="spacer"></div>
+
+    <div class="input-group">
+        <span class="input-group-text">Password</span>
+        <input type="password" aria-label="Password" class="form-control" #password>
+    </div>
+    <div class="spacer"></div>
+
+    <div class="input-group">
+        <span class="input-group-text">Confirm Password</span>
+        <input type="password" aria-label="Confirm Password" class="form-control" #confirm_password>
+    </div>
+
+    <div class="spacer"></div>
+    <div *ngIf="error_msg!=''">{{error_msg}}</div>
+    <button type="button" class="btn btn-primary btn-lg" (click)="onSignUp(emailSignup.value,password.value,confirm_password.value,firstname.value,lastname.value)">Sign Up</button>
+</div>
