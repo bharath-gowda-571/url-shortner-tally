@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.device = this.detector
+    console.log(this.device)
     if(localStorage.getItem("user")!==null){
       this._router.navigate(['/dashboard'])
     }

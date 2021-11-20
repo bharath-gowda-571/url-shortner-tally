@@ -4,6 +4,8 @@ import { Links } from 'src/app/models';
 import { RedirectionService } from 'src/app/services/redirection.service'; 
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 import { getAuth } from '@firebase/auth';
+import { LogsService } from 'src/app/services/logs.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -17,39 +19,31 @@ export class DashboardComponent implements OnInit {
   public small_link_value=""
   public error_msg=""
 
-  constructor(private router:Router,private firebaseService:FirebaseAuthService, private _redirectionService:RedirectionService) { }
+  constructor(private router:Router,private firebaseService:FirebaseAuthService, private _redirectionService:RedirectionService,public logsService:LogsService) { }
 
 randomString(length:number) {
 
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
     var result = '';
-
     for ( var i = 0; i < length; i++ ) {
-
         result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-
     }
     return result;
-
   }
 
   links!:Links[];
 
 
   async ngOnInit(): Promise<void> {
-    
+    this.logsService.getUserLocation()
     if(localStorage.getItem("user")===null){
       this.router.navigate(['/'])
     }
-
     
     var Uid = localStorage.getItem("user")
     this._redirectionService.getHisLinks(Uid!).subscribe((data:Links[]) => {
       this.links = data;
     })
-  
-
 
     this.error_msg=""
     this.small_link_value=""
@@ -60,13 +54,11 @@ randomString(length:number) {
        
       this.userfirstname=await this.firebaseService.getUserFirstName();
       this.keys=await this.firebaseService.getListofKeys()
-      console.log(this.keys)
       for(var key of Object.keys(this.keys)){
         this.keys_list.push(key)
       }
       
       this.keys_list=[...this.keys_list,"dashboard","signup","signin",""]
-      console.log(this.keys_list)
     } 
   }
 
