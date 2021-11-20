@@ -7,6 +7,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RedirectionComponent } from './components/redirection/redirection.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
+
 import { SignupComponent } from './components/signup/signup.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -21,17 +25,22 @@ const firebaseConfig = {
   messagingSenderId: "170946501040",
   appId: "1:170946501040:web:76780a4aa67f1a0db15e75"
 };
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
     RedirectionComponent,
+
+    ErrorpageComponent,
     SignupComponent,
     SigninComponent,
     DashboardComponent
+
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
