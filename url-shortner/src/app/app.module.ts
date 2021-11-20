@@ -11,6 +11,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HttpClientModule } from '@angular/common/http';
+import { SigninComponent } from './components/signin/signin.component';
 const firebaseConfig = {
   apiKey: "AIzaSyCYdVjp9Umiql063Ta4j4THoWtHdD9wlUc",
   authDomain: "url-shortner-418d4.firebaseapp.com",
@@ -25,7 +26,8 @@ const firebaseConfig = {
     NavbarComponent,
     HomeComponent,
     RedirectionComponent,
-    SignupComponent
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

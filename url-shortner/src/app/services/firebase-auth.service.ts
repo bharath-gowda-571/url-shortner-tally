@@ -11,10 +11,15 @@ export class FirebaseAuthService {
   constructor(public firebaseAuth:AngularFireAuth ,private _http:HttpClient) { }
   
   async signin(email:string,password:string){
+    var error_msg=""
     await this.firebaseAuth.signInWithEmailAndPassword(email,password).then(res=>{
+      console.log(res)
       this.isLoggedIn=true
       localStorage.setItem('user',JSON.stringify(res.user))
+    }).catch(e=>{
+      error_msg="Wrong Email or Password"
     })
+    return error_msg
   }
 
   async signup(email:string,password:string,first_name:string,last_name:string){
@@ -47,5 +52,13 @@ export class FirebaseAuthService {
   logout(){
     this.firebaseAuth.signOut()
     localStorage.removeItem('user')
+  }
+  async getUserName(uid:any){
+    console.log(uid)
+    var first_name= await this._http.get("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid.toString()+"/first_name.json").toPromise()
+    var last_name= await this._http.get("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid.toString()+"/last name.json").toPromise()
+    // print(first_name)
+    console.log(first_name)
+    return first_name+" "+last_name
   }
 }

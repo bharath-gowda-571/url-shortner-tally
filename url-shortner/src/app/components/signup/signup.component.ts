@@ -38,7 +38,6 @@ export class SignupComponent implements OnInit {
 
     if(this.firebaseService.isLoggedIn)
     this.isSignedIn=true
-
   }
 
 } 
