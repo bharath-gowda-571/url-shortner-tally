@@ -30,11 +30,10 @@ export class SigninComponent implements OnInit {
 
       }
       else{
-        this._router.navigate(["/home"])
+        if(this.firebaseService.isLoggedIn)
+          this.isSignedIn=true
+        this._router.navigate(["/"])
       }
-    if(this.firebaseService.isLoggedIn)
-      this.isSignedIn=true
-
   }
   
 }

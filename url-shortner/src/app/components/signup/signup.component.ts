@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 @Component({
   selector: 'app-signup',
@@ -8,7 +9,7 @@ import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 export class SignupComponent implements OnInit {
 
   isSignedIn=false
-  constructor(public firebaseService:FirebaseAuthService) { }
+  constructor(public firebaseService:FirebaseAuthService,private _router:Router) { }
   
   error_msg=""
 
@@ -31,6 +32,9 @@ export class SignupComponent implements OnInit {
       var returned=await this.firebaseService.signup(email,password,firstname,lastname)
       if(returned!=""){
         this.error_msg=returned
+      }
+      else{
+        this._router.navigate(["/"])
       }
     }
     

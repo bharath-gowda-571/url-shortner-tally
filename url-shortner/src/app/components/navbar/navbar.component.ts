@@ -13,7 +13,6 @@ export class NavbarComponent implements OnInit {
   public styles:string[]=Array(3).fill("nav-item")
   public currentIndex:number=0;
   isloggedIn=false
-  // public userFullName!:string;
   
 
   constructor(private _router:Router,public firebaseService:FirebaseAuthService) {
@@ -35,6 +34,7 @@ export class NavbarComponent implements OnInit {
   signOut(){
     this.firebaseService.logout()
     this.isloggedIn=false
+    this._router.navigate(["/"])
   }
   
   switchStyleOfNavs(choice:number){
