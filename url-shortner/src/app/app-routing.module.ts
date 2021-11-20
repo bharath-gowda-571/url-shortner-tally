@@ -4,7 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RedirectionComponent } from './components/redirection/redirection.component';
 const routes: Routes = [
-  {path:"home",component:HomeComponent},
+
+  {path:"",component:HomeComponent},
   {path:"**",component:RedirectionComponent}
 ];
 

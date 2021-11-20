@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RedirectionService } from 'src/app/services/redirection.service';
+import { NavbarComponent } from '../navbar/navbar.component';
+
 
 @Component({
   selector: 'app-redirection',
@@ -8,10 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RedirectionComponent implements OnInit {
 
-  constructor(private _router:ActivatedRoute) { }
+  constructor(private _service:RedirectionService,private _router:ActivatedRoute) {}
+ 
+  async ngOnInit(): Promise<void> {
+    var res = await this._service.viewLink(this._router.snapshot.url[0]['path'])
+    console.log(res)
 
-  ngOnInit(): void {
-    console.log(this._router.snapshot.url[0]['path'])
+    if(res){
+      window.location.href = String(res)
+
+    }
   }
 
 }

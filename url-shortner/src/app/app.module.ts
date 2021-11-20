@@ -7,15 +7,19 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RedirectionComponent } from './components/redirection/redirection.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    RedirectionComponent
+    RedirectionComponent,
+    ErrorpageComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule
