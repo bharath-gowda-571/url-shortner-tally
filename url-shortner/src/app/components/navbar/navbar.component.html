@@ -17,8 +17,11 @@
         </li> -->
         
       </ul>
+      <button type="button" class="btn btn-outline-primary" routerLink="/signup" *ngIf="!isloggedIn">Sign Up</button>
+      <span style="width: 15px;" *ngIf="!isloggedIn"></span>
+      <button type="button" class="btn btn-outline-primary" routerLink="/signin" *ngIf="!isloggedIn">Sign In</button>
 
-      <p>testing</p>
+      <button type="button" class="btn btn-outline-primary" *ngIf="isloggedIn" (click)="signOut()">Sign Out</button>
       
     </div>
 </nav>
