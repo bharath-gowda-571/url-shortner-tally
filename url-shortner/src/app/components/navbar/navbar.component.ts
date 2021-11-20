@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
       this.isloggedIn=true
     }
     else{
-      console.log("here")
+      // console.log("here")
       
       this.isloggedIn=false
     }
