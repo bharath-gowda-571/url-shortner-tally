@@ -22,5 +22,4 @@ export class RedirectionComponent implements OnInit {
 
     }
   }
-
 }

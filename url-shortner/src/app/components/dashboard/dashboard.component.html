@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <h1>Welcome Bharath,</h1>
 <hr>
 <div class="shortn_link">
@@ -15,4 +16,14 @@
         
     </div>
     <button type="button" class="btn btn-primary">Shorten Link</button>
+</div>
+
+<div *ngFor = "let link of links">
+    <a class="list-group-item list-group-item-action flex-column align-items-start ">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">bit.ly/{{link["link"]}}</h5>
+          <span><button ngxClipboard [cbContent]='link["link"]'> copy</button></span>
+        </div>
+        <p class="mb-1" style="font-style: italic; size: 10; color: blue;">{{link["fullink"]}}</p>
+      </a>
 </div>

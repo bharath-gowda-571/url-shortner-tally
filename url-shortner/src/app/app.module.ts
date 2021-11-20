@@ -16,6 +16,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './components/signin/signin.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ClipboardModule } from "ngx-clipboard"
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyCYdVjp9Umiql063Ta4j4THoWtHdD9wlUc",
   authDomain: "url-shortner-418d4.firebaseapp.com",
@@ -39,6 +42,7 @@ const firebaseConfig = {
 
   ],
   imports: [
+    ClipboardModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
