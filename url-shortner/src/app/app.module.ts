@@ -16,7 +16,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './components/signin/signin.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ClipboardModule } from "ngx-clipboard"
+import { ClipboardModule } from "ngx-clipboard";
+import { ViewstatsComponent } from './components/viewstats/viewstats.component'
 
 
 const firebaseConfig = {
@@ -38,7 +39,8 @@ const firebaseConfig = {
     ErrorpageComponent,
     SignupComponent,
     SigninComponent,
-    DashboardComponent
+    DashboardComponent,
+    ViewstatsComponent
 
   ],
   imports: [

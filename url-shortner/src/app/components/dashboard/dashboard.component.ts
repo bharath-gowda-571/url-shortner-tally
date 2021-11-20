@@ -83,5 +83,7 @@ randomString(length:number) {
     }
     this.small_link_value=rand_str
   }
-  
+  viewStats(key:string){
+    this.router.navigate(['/viewstats',key])
+  }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import {getAuth} from 'firebase/auth'
 import {HttpClient} from '@angular/common/http'
+import {logs} from '../models'
 
 interface UserLink{
   fullink:string,
@@ -90,7 +91,9 @@ export class FirebaseAuthService {
       })
     this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+"/links.json",user_links).subscribe(data=>{
     })
+  }
 
-
+  async get_logs(key:string){
+    return await this._http.get<logs[]>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls/"+key+"/logs.json").toPromise()
   }
 }

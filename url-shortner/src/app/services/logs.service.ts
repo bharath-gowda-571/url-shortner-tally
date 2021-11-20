@@ -16,9 +16,9 @@ export class LogsService {
   
   async getUserLocation(){
     var ip=await this.http.get<IPFormat>("http://api.ipify.org/?format=json").toPromise()
-    console.log(ip)
+    // console.log(ip)
     var location_data=await this.http.get("https://ipapi.co/"+ip.ip+"/json/").toPromise()
-    console.log(location_data)
+    // console.log(location_data)
   }
 
 }
