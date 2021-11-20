@@ -8,7 +8,6 @@ import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RedirectionComponent } from './components/redirection/redirection.component';
 
-import { HttpClientModule } from '@angular/common/http';
 import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 
 import { SignupComponent } from './components/signup/signup.component';
