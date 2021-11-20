@@ -2,9 +2,18 @@ import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import {getAuth} from 'firebase/auth'
 import {HttpClient} from '@angular/common/http'
+
+interface UserLink{
+  fullink:string,
+  link:string
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class FirebaseAuthService {
   isLoggedIn=false
   
@@ -13,9 +22,12 @@ export class FirebaseAuthService {
   async signin(email:string,password:string){
     var error_msg=""
     await this.firebaseAuth.signInWithEmailAndPassword(email,password).then(res=>{
-      console.log(res)
       this.isLoggedIn=true
-      localStorage.setItem('user',JSON.stringify(res.user))
+      const auth = getAuth();
+      const user = auth.currentUser;
+      var uid=user?.uid
+      localStorage.setItem('user',uid!.toString())
+
     }).catch(e=>{
       error_msg="Wrong Email or Password"
     })
@@ -26,11 +38,11 @@ export class FirebaseAuthService {
     var error_msg=""
     await this.firebaseAuth.createUserWithEmailAndPassword(email,password).then(res=>{
       this.isLoggedIn=true
-      localStorage.setItem('user',JSON.stringify(res.user))
       const auth = getAuth();
       const user = auth.currentUser;
       var uid=user?.uid
-      console.log(uid)
+      localStorage.setItem('user',uid!.toString())
+      
       this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+".json",{"first_name":first_name,"last name":last_name}).subscribe(data=>{
       })  
     }).catch(e=>{
@@ -53,12 +65,32 @@ export class FirebaseAuthService {
     this.firebaseAuth.signOut()
     localStorage.removeItem('user')
   }
-  async getUserName(uid:any){
-    console.log(uid)
-    var first_name= await this._http.get("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid.toString()+"/first_name.json").toPromise()
-    var last_name= await this._http.get("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid.toString()+"/last name.json").toPromise()
-    // print(first_name)
-    console.log(first_name)
-    return first_name+" "+last_name
+  async getUserFirstName(){
+    var uid=localStorage.getItem("user")
+    var first_name= await this._http.get("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid!.toString()+"/first_name.json").toPromise()
+    return first_name
+  }
+
+  async getListofKeys(){
+
+    return await this._http.get("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls.json").toPromise()
+  }
+  async add_new_link(short_link:string,long_link:string){
+    this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls/"+short_link+".json",{"fullink":long_link}).subscribe(data=>{
+      })
+      var uid=localStorage.getItem("user")
+      var user_links=await this._http.get<UserLink[]>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+"/links.json").toPromise()
+      console.log(user_links)
+      if(user_links==null){
+        user_links=[]
+      }
+      user_links.push(<UserLink>{
+        fullink:long_link,
+        link:short_link
+      })
+    this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+"/links.json",user_links).subscribe(data=>{
+    })
+
+
   }
 }

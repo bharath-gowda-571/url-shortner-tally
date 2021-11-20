@@ -1,18 +1,23 @@
 <app-navbar></app-navbar>
-<h1>Welcome Bharath,</h1>
+<h1>Welcome {{userfirstname}},</h1>
 <hr>
 <div class="shortn_link">
     <h5>Shorten a new link</h5>
+    <div class="spacer"></div>
     <div class="input-group">
         <span class="input-group-text">Full Link</span>
-        <input type="text" aria-label="Full Link" class="form-control" #emailSignup>
+        <input type="text" aria-label="Full Link" class="form-control" #long_link>
     </div>
+    <div class="spacer"></div>
     <div class="input-group">
         <span class="input-group-text">Short Link</span>
         <span class="input-group-text">bit.ly/</span>
-        <input type="text" aria-label="Email" class="form-control" placeholder="choose a custom link" #emailSignup>
-        <button type="button" class="btn btn-primary">Choose Random</button>
-        
+        <input type="text" aria-label="Email" class="form-control" placeholder="choose a custom link" [value]="small_link_value" #small_link>
+        <button type="button" class="btn btn-primary" (click)="generateRandomLink()">Choose Random</button>
     </div>
-    <button type="button" class="btn btn-primary">Shorten Link</button>
+    <div class="spacer"></div>
+    <div *ngIf='error_msg!=""'>{{error_msg}}</div>
+    <div class="spacer"></div>
+
+    <button type="button" class="btn btn-primary" (click)="shortenNewLink(small_link.value,long_link.value)">Shorten Link</button>
 </div>
