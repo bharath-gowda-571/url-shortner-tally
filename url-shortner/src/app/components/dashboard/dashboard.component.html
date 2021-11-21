@@ -25,7 +25,8 @@
 </div>
 <hr>
 <h3>Your Links</h3>
-<div>
+<div *ngIf="no_links" style="text-align: center;margin-top: 20px;">No Links Yet</div>
+<div *ngIf="!no_links">
     <div *ngFor = "let link of links">
         <a class="list-group-item list-group-item-action flex-column align-items-start ">
             <div class="d-flex w-100 justify-content-between">

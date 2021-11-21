@@ -34,7 +34,7 @@ randomString(length:number) {
 
   links!:Links[];
 
-
+  public no_links=false
   async ngOnInit(): Promise<void> {
     this.logsService.getUserLocation()
     if(localStorage.getItem("user")===null){
@@ -44,7 +44,12 @@ randomString(length:number) {
     var Uid = localStorage.getItem("user")
     this._redirectionService.getHisLinks(Uid!).subscribe((data:Links[]) => {
       this.links = data;
+      if(this.links==null){
+        this.no_links=true
+      }
+      else{
       this.links=this.links.reverse()
+      }
 
     })
     this.error_msg=""
