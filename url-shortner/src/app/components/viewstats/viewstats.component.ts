@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 import {logs} from '../../models'
 import { ChartType, ChartOptions,ChartDataSets   } from 'chart.js';
@@ -13,7 +13,7 @@ import { Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-
 })
 export class ViewstatsComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute,private firebaseService:FirebaseAuthService) { 
+  constructor(private route:ActivatedRoute,private firebaseService:FirebaseAuthService,private _route:Router) { 
     monkeyPatchChartJsLegend();
     monkeyPatchChartJsTooltip();
   }
@@ -77,6 +77,10 @@ export class ViewstatsComponent implements OnInit {
   };
 
   async ngOnInit(): Promise<void> {
+    var user=localStorage.getItem("user")
+    if(user===null){
+        this._route.navigate(['/'])
+    }
     this.key=this.route.snapshot.paramMap.get("key")
     
     this.logs=await this.firebaseService.get_logs(this.key)
