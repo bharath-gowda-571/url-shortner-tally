@@ -19,7 +19,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClipboardModule } from "ngx-clipboard";
 import { ViewstatsComponent } from './components/viewstats/viewstats.component'
 import { ChartsModule } from 'ng2-charts';
-
+import {NgxQRCodeModule} from '@techiediaries/ngx-qrcode'
 const firebaseConfig = {
   apiKey: "AIzaSyCYdVjp9Umiql063Ta4j4THoWtHdD9wlUc",
   authDomain: "url-shortner-418d4.firebaseapp.com",
@@ -45,6 +45,7 @@ const firebaseConfig = {
   ],
   imports: [
     ChartsModule,
+    NgxQRCodeModule,
     ClipboardModule,
     HttpClientModule,
     BrowserModule,

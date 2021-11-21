@@ -77,11 +77,10 @@ export class FirebaseAuthService {
     return await this._http.get("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls.json").toPromise()
   }
   async add_new_link(short_link:string,long_link:string){
-    this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls/"+short_link+".json",{"fullink":long_link}).subscribe(data=>{
-      })
+    await this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls/"+short_link+".json",{"fullink":long_link}).toPromise()
       var uid=localStorage.getItem("user")
       var user_links=await this._http.get<UserLink[]>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+"/links.json").toPromise()
-      console.log(user_links)
+      
       if(user_links==null){
         user_links=[]
       }
@@ -89,11 +88,21 @@ export class FirebaseAuthService {
         fullink:long_link,
         link:short_link
       })
-    this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+"/links.json",user_links).subscribe(data=>{
-    })
+    await this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+"/links.json",user_links).toPromise()
   }
 
   async get_logs(key:string){
     return await this._http.get<logs[]>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls/"+key+"/logs.json").toPromise()
+  }
+  async delete_link(link:string){
+    await this._http.delete("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls/"+link+".json").toPromise()
+    var uid=localStorage.getItem("user")
+
+    var list=await this._http.get<UserLink[]>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+"/links.json").toPromise()
+    list.forEach((element,index)=>{
+      if(element.link==link) list.splice(index,1);
+    
+   });
+   await this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+"/links.json",list).toPromise()
   }
 }

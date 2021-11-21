@@ -7,15 +7,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li [class]="styles[0]" (click)="switchStyleOfNavs(0)">
-          <a class="nav-link" routerLink="">Shorten a URL <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="">About Us <span class="sr-only">(current)</span></a>
         </li>
-        <li [class]="styles[1]" (click)="switchStyleOfNavs(1)">
-          <a class="nav-link" routerLink="/batsvsteam">About Us <span class="sr-only">(current)</span></a>
-        </li>
-        <!-- <li [class]="styles[2]" (click)="switchStyleOfNavs(2)">
-          <a class="nav-link" routerLink="/bowlvsteam">Bowler Vs Team <span class="sr-only">(current)</span></a>
-        </li> -->
-        
       </ul>
       <button type="button" class="btn btn-outline-primary" routerLink="/signup" *ngIf="!isloggedIn">Sign Up</button>
       <span style="width: 15px;" *ngIf="!isloggedIn"></span>

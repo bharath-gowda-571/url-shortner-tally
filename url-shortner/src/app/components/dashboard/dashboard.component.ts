@@ -5,7 +5,7 @@ import { RedirectionService } from 'src/app/services/redirection.service';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 import { getAuth } from '@firebase/auth';
 import { LogsService } from 'src/app/services/logs.service';
-
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +18,8 @@ export class DashboardComponent implements OnInit {
   public keys_list:string[]=[];
   public small_link_value=""
   public error_msg=""
-
+  elementType = NgxQrcodeElementTypes.URL;
+  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   constructor(private router:Router,private firebaseService:FirebaseAuthService, private _redirectionService:RedirectionService,public logsService:LogsService) { }
 
 randomString(length:number) {
@@ -43,8 +44,9 @@ randomString(length:number) {
     var Uid = localStorage.getItem("user")
     this._redirectionService.getHisLinks(Uid!).subscribe((data:Links[]) => {
       this.links = data;
-    })
+      this.links=this.links.reverse()
 
+    })
     this.error_msg=""
     this.small_link_value=""
     if(localStorage.getItem("user")===null){
@@ -62,7 +64,7 @@ randomString(length:number) {
     } 
   }
 
-  shortenNewLink(small_url:string,long_link:string){
+  async shortenNewLink(small_url:string,long_link:string){
     if(long_link==""){
       this.error_msg="Link cannot be empty"
     }
@@ -73,7 +75,8 @@ randomString(length:number) {
       this.error_msg="Sorry, the link u have chosen already exists"
     }
     else{
-      this.firebaseService.add_new_link(small_url,long_link)
+      await this.firebaseService.add_new_link(small_url,long_link)
+      location.reload()
     }
   }
   generateRandomLink(){
@@ -85,5 +88,9 @@ randomString(length:number) {
   }
   viewStats(key:string){
     this.router.navigate(['/viewstats',key])
+  }
+  async delete_link(key:string){
+    await this.firebaseService.delete_link(key)
+    location.reload()
   }
 }
