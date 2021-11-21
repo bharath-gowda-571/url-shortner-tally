@@ -27,3 +27,8 @@
   margin-right: auto;
   width: 40%;
 }
+@media only screen and (max-width: 968px) {
+    .shortn_link {
+      width: 80vw;
+    }
+  }

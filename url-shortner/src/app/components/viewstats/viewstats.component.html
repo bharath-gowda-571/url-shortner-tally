@@ -1,14 +1,102 @@
 <app-navbar></app-navbar>
-<div *ngIf="no_data">No Visits to this link yet</div>
-<div  class="pie-chart" >
-    <canvas baseChart 
-      [data]="pieChartData1" 
-      [labels]="pieChartLabels1" 
-      [chartType]="pieChartType1"
-      [options]="pieChartOptions1"
-      [plugins]="pieChartPlugins1"
-      [legend]="pieChartLegend1"
-      [colors]="donutColors1"
-      >
-    </canvas>
+<div *ngIf="no_data" style="text-align: center; margin: 20px; ">No Visits to this link yet</div>
+<div *ngIf="!no_data">
+<div class="row">
+  <div class="col-md-4">
+    <h2 style ="text-align: center;">Operating System</h2>
+      <div  class="pie-chart" >
+      <canvas baseChart 
+        [data]="pieChartData1" 
+        [labels]="pieChartLabels1" 
+        [chartType]="pieChartType1"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins1"
+        [legend]="pieChartLegend1"
+        [colors]="donutColors1"
+        >
+      </canvas>
+    </div>
   </div>
+
+  <div class="col-md-4">
+    <h2 style ="text-align: center;">Browser</h2>
+      <div  class="pie-chart" >
+      <canvas baseChart 
+        [data]="pieChartData2" 
+        [labels]="pieChartLabels2" 
+        [chartType]="pieChartType2"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins2"
+        [legend]="pieChartLegend2"
+        [colors]="donutColors1"
+        >
+      </canvas>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <h2 style ="text-align: center;">Device-type</h2>
+    <div *ngIf="no_data">No Visits to this link yet</div>
+      <div  class="pie-chart" >
+      <canvas baseChart 
+        [data]="pieChartData3" 
+        [labels]="pieChartLabels3" 
+        [chartType]="pieChartType3"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins3"
+        [legend]="pieChartLegend3"
+        [colors]="donutColors1"
+        >
+      </canvas>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2 style ="text-align: center;">Country</h2>
+    <table class="main-stats-table" *ngFor ="let count of barChart2Data; index as i">
+      <tr>
+        <td class="main-stats-table-left">{{barChartLabels[i]}}</td>
+
+        <td class="main-stats-table-right">{{count}}</td>
+      </tr>
+      <tr class="main-stats-table-spacer"></tr>
+    </table>
+  </div>
+
+  <div class="col-md-6">
+    <h2 style ="text-align: center;">Country</h2>
+    <div  class="bar-chart">
+      <canvas baseChart 
+        [data]="barChart2Data"
+        [labels]="barChartLabels"
+        [options]="barChart2Options"
+        [plugins]="barChart2Plugins"
+        [legend]="barChart2Legend"
+        [chartType]="barChart2Type"
+      >
+      </canvas>
+      </div>
+  </div>
+</div>
+
+<div class="row" >
+  <div class="col-md-12">
+    <h2 style ="text-align: center;">All Logs</h2>
+    <table class="main-stats-table" *ngFor ="let log of logs.reverse()">
+      <tr>
+        <td class="main-stats-table-right">{{log.date}}</td>
+        <td class="main-stats-table-right">{{log.browser}}</td>
+        <td class="main-stats-table-right">{{log.deviceType}}</td>
+        <td class="main-stats-table-right">{{log.os}}</td>
+        <td class="main-stats-table-right">{{log.country}}</td>
+        <td class="main-stats-table-right">{{log.state}}</td>
+        <td class="main-stats-table-right">{{log.city}}</td>
+        <td class="main-stats-table-right">{{log.latitude}}</td>
+        <td class="main-stats-table-right">{{log.longitude}}</td>
+      </tr>
+      <tr class="main-stats-table-spacer"></tr>
+    </table>
+  </div>
+</div>

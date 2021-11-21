@@ -1,0 +1,21 @@
+.main-stats-table{
+    margin-left: 5%;
+    width: 90%;
+    height: 40%;
+    margin-right: 5%;
+
+    &-left{
+        background-color: #dcdcdc;
+        text-align: left;
+        padding-left: 10px;
+        width: 40%;
+    }
+    &-right{
+        background-color: #c4c4c4;
+        width: 40%;
+        text-align: center;
+    }
+    &-spacer{
+        height: 2px;
+    }
+}
