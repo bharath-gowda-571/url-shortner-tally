@@ -1,1 +1,14 @@
 <app-navbar></app-navbar>
+<div *ngIf="no_data">No Visits to this link yet</div>
+<div  class="pie-chart" >
+    <canvas baseChart 
+      [data]="pieChartData1" 
+      [labels]="pieChartLabels1" 
+      [chartType]="pieChartType1"
+      [options]="pieChartOptions1"
+      [plugins]="pieChartPlugins1"
+      [legend]="pieChartLegend1"
+      [colors]="donutColors1"
+      >
+    </canvas>
+  </div>

@@ -28,7 +28,6 @@ export class RedirectionComponent implements OnInit {
       logs1.deviceType = this.detector.deviceType;
       logs1.os = this.detector.os;
       this.loading = await this.service.regLog(this.router.snapshot.url[0]['path'], logs1)
-
       window.location.href = String(res)
     }
   }

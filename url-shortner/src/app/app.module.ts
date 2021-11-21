@@ -18,7 +18,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClipboardModule } from "ngx-clipboard";
 import { ViewstatsComponent } from './components/viewstats/viewstats.component'
-
+import { ChartsModule } from 'ng2-charts';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCYdVjp9Umiql063Ta4j4THoWtHdD9wlUc",
@@ -44,6 +44,7 @@ const firebaseConfig = {
 
   ],
   imports: [
+    ChartsModule,
     ClipboardModule,
     HttpClientModule,
     BrowserModule,
