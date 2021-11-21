@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 import { HomeComponent } from './components/home/home.component';
 import { RedirectionComponent } from './components/redirection/redirection.component';
 import { SigninComponent } from './components/signin/signin.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:"dashboard",component:DashboardComponent},
   {path:"viewstats/:key",component:ViewstatsComponent},
   {path:"",pathMatch:"full",component:HomeComponent},
+  {path:"error", component:ErrorpageComponent},
   {path:"**",component:RedirectionComponent}
 ];
 
