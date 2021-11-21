@@ -105,4 +105,12 @@ export class FirebaseAuthService {
    });
    await this._http.put<Map<string,string>>("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+uid+"/links.json",list).toPromise()
   }
+  async check_if_exists(key:string){
+    var res=await this._http.get("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls/"+key+"/.json?shallow=true").toPromise()
+    console.log(res)
+    if(res==null){
+      return false
+    }
+    return true
+  }
 }

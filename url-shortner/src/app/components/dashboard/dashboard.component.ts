@@ -60,23 +60,19 @@ randomString(length:number) {
     else{
        
       this.userfirstname=await this.firebaseService.getUserFirstName();
-      this.keys=await this.firebaseService.getListofKeys()
-      for(var key of Object.keys(this.keys)){
-        this.keys_list.push(key)
-      }
       
-      this.keys_list=[...this.keys_list,"dashboard","signup","signin",""]
     } 
   }
 
   async shortenNewLink(small_url:string,long_link:string){
+    var check=await this.firebaseService.check_if_exists(small_url)
     if(long_link==""){
       this.error_msg="Link cannot be empty"
     }
     else if(small_url==""){
       this.error_msg="Link cannot be empty"
     }
-    else if(this.keys_list.includes(small_url)){
+    else if(check===true){
       this.error_msg="Sorry, the link u have chosen already exists"
     }
     else{
@@ -86,7 +82,7 @@ randomString(length:number) {
   }
   generateRandomLink(){
     var rand_str=this.randomString(8)
-    while(this.keys_list.includes(rand_str)){
+    while(!this.firebaseService.check_if_exists(rand_str)){
       rand_str=this.randomString(8)
     }
     this.small_link_value=rand_str
