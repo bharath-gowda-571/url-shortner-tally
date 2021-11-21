@@ -1,20 +1,20 @@
 <app-navbar></app-navbar>
 
 
-<h1>Welcome {{userfirstname}},</h1>
+<h1 style="margin-left: 20px;">Welcome {{userfirstname}},</h1>
 
 <hr>
 <div class="shortn_link">
     <h5>Shorten a new link</h5>
     <div class="spacer"></div>
     <div class="input-group">
-        <span class="input-group-text">Full Link</span>
+        <span class="input-group-text" >Full Link</span>
         <input type="text" aria-label="Full Link" class="form-control" #long_link>
     </div>
     <div class="spacer"></div>
     <div class="input-group">
         <span class="input-group-text">Short Link</span>
-        <span class="input-group-text">bit.ly/</span>
+        <span class="input-group-text">https://url-shortner-418d4.web.app/</span>
         <input type="text" aria-label="Email" class="form-control" placeholder="choose a custom link" [value]="small_link_value" #small_link>
         <button type="button" class="btn btn-primary" (click)="generateRandomLink()">Choose Random</button>
     </div>
@@ -24,29 +24,29 @@
     <button type="button" class="btn btn-primary" (click)="shortenNewLink(small_link.value,long_link.value)">Shorten Link</button>
 </div>
 <hr>
-<h3>Your Links</h3>
+<h3 style="margin-left: 20px;">Your Links</h3>
 <div *ngIf="no_links" style="text-align: center;margin-top: 20px;">No Links Yet</div>
 <div *ngIf="!no_links">
     <div *ngFor = "let link of links">
         <a class="list-group-item list-group-item-action flex-column align-items-start ">
             <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">bit.ly/{{link["link"]}}</h5>
+            <h5 class="mb-1">https://url-shortner-418d4.web.app/{{link["link"]}}</h5>
             
-            <span><button ngxClipboard [cbContent]='link["link"]' class="button-style"> 
+            <span><button ngxClipboard [cbContent]='"https://url-shortner-418d4.web.app/"+link["link"]' class="button-style"> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
                     <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                     <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
                 </svg></button>
             </span>
             </div>
-            <p class="mb-1" style="font-style: italic; size: 10; color: blue;">{{link["fullink"]}}</p>
+            <a class="mb-1" style="font-style: italic; size: 10; color: blue;" [href]="link['fullink']">{{link["fullink"]}}</a>
     
     <div class="row">
         <div class="col-sm-6">       
             <ngx-qrcode
                 [elementType]="elementType"
                 [errorCorrectionLevel]="correctionLevel"
-                [value]="link['link']"
+                [value]="'https://url-shortner-418d4.web.app/' + link['link']"
                 cssClass="bshadow">
             </ngx-qrcode>
         </div>
