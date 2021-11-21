@@ -1,3 +1,4 @@
+import { Time } from "@angular/common";
 
 export interface Links{
     link:string,
@@ -14,4 +15,5 @@ export class logs{
     country!:string;
     latitude!:number;
     longitude!:number;
+    date: String =""
 }

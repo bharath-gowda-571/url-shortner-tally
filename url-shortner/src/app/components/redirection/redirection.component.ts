@@ -5,6 +5,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { logs } from 'src/app/models';
 import { RedirectionService } from 'src/app/services/redirection.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { delay } from 'rxjs/operators';
 
 
 @Component({
@@ -15,9 +16,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class RedirectionComponent implements OnInit {
 
   constructor(private service:RedirectionService,private router:ActivatedRoute, private detector:DeviceDetectorService) {}
- 
+ loading:any = null;
   async ngOnInit(): Promise<void> {
-    console.log(this.router.snapshot.url[0]['path'])
     var res = await this.service.viewLink(this.router.snapshot.url[0]['path'])
 
     console.log(res)
@@ -27,8 +27,9 @@ export class RedirectionComponent implements OnInit {
       logs1.device = this.detector.device;
       logs1.deviceType = this.detector.deviceType;
       logs1.os = this.detector.os;
-      this.service.regLog(this.router.snapshot.url[0]['path'], logs1)
-      // window.location.href = String(res)
+      this.loading = await this.service.regLog(this.router.snapshot.url[0]['path'], logs1)
+
+      window.location.href = String(res)
     }
   }
 }
