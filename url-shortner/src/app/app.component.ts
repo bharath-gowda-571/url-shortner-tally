@@ -22,7 +22,7 @@ export class AppComponent {
         router.navigateByUrl(this.currentUrl);
         else{
           this.currentUrl = this.router.url;
-          router.navigateByUrl("/error"); 
+          router.navigateByUrl("/noConnection"); 
         }
       }
     )
