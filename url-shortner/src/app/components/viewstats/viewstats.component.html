@@ -88,7 +88,7 @@
     <h2 style ="text-align: left;margin: 40px;">All Logs</h2>
     <table class="main-stats-table" *ngFor ="let log of logs.reverse()">
       <tr>
-        <td class="main-stats-table-left">{{log.date}}</td>
+        <td class="main-stats-table-left">{{log.date +" UTC"}}</td>
         <td class="main-stats-table-right">{{"browser="+log.browser}}, {{"device type="+log.deviceType}}, {{"os="+log.os}}, {{"country="+log.country}}, {{"state="+log.state}}, {{"city="+log.city}}, {{"latitude="+log.latitude}}, {{"longitude="+log.longitude}}</td>        
         
       </tr>
