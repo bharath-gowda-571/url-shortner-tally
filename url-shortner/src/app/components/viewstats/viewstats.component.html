@@ -1,9 +1,11 @@
 <app-navbar></app-navbar>
 <div *ngIf="no_data" style="text-align: center; margin: 20px; ">No Visits to this link yet</div>
 <div *ngIf="!no_data">
+  <h4 style="margin: 30px;"><u>Current Link: {{key}}</u></h4>
+  <hr>
 <div class="row">
   <div class="col-md-4">
-    <h2 style ="text-align: center;">Operating System</h2>
+    <h4 style ="text-align: center;">Operating System</h4>
       <div  class="pie-chart" >
       <canvas baseChart 
         [data]="pieChartData1" 
@@ -19,7 +21,7 @@
   </div>
 
   <div class="col-md-4">
-    <h2 style ="text-align: center;">Browser</h2>
+    <h4 style ="text-align: center;">Browser</h4>
       <div  class="pie-chart" >
       <canvas baseChart 
         [data]="pieChartData2" 
@@ -35,7 +37,7 @@
   </div>
 
   <div class="col-md-4">
-    <h2 style ="text-align: center;">Device-type</h2>
+    <h4 style ="text-align: center;">Device-type</h4>
     <div *ngIf="no_data">No Visits to this link yet</div>
       <div  class="pie-chart" >
       <canvas baseChart 
@@ -51,10 +53,10 @@
     </div>
   </div>
 </div>
-
+<hr>
 <div class="row">
   <div class="col-md-6">
-    <h2 style ="text-align: center;">Country</h2>
+    <h4 style ="text-align: center;">Country-Data</h4>
     <table class="main-stats-table" *ngFor ="let count of barChart2Data; index as i">
       <tr>
         <td class="main-stats-table-left">{{barChartLabels[i]}}</td>
@@ -66,7 +68,7 @@
   </div>
 
   <div class="col-md-6">
-    <h2 style ="text-align: center;">Country</h2>
+    <h4 style ="text-align: center;">Country-Chart</h4>
     <div  class="bar-chart">
       <canvas baseChart 
         [data]="barChart2Data"
@@ -80,23 +82,17 @@
       </div>
   </div>
 </div>
-
+<hr>
 <div class="row" >
   <div class="col-md-12">
-    <h2 style ="text-align: center;">All Logs</h2>
+    <h2 style ="text-align: left;margin: 40px;">All Logs</h2>
     <table class="main-stats-table" *ngFor ="let log of logs.reverse()">
       <tr>
-        <td class="main-stats-table-right">{{log.date}}</td>
-        <td class="main-stats-table-right">{{log.browser}}</td>
-        <td class="main-stats-table-right">{{log.deviceType}}</td>
-        <td class="main-stats-table-right">{{log.os}}</td>
-        <td class="main-stats-table-right">{{log.country}}</td>
-        <td class="main-stats-table-right">{{log.state}}</td>
-        <td class="main-stats-table-right">{{log.city}}</td>
-        <td class="main-stats-table-right">{{log.latitude}}</td>
-        <td class="main-stats-table-right">{{log.longitude}}</td>
+        <td class="main-stats-table-left">{{log.date}}</td>
+        <td class="main-stats-table-right">{{"browser="+log.browser}}, {{"device type="+log.deviceType}}, {{"os="+log.os}}, {{"country="+log.country}}, {{"state="+log.state}}, {{"city="+log.city}}, {{"latitude="+log.latitude}}, {{"longitude="+log.longitude}}</td>        
+        
       </tr>
       <tr class="main-stats-table-spacer"></tr>
-    </table>
+    </table>  
   </div>
 </div>
