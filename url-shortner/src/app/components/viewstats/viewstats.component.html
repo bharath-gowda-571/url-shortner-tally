@@ -1,7 +1,9 @@
 <app-navbar></app-navbar>
 <div *ngIf="no_data" style="text-align: center; margin: 20px; ">No Visits to this link yet</div>
 <div *ngIf="!no_data">
-  <h4 style="margin: 30px;"><u>Current Link: {{key}}</u></h4>
+  <h4 style="margin: 30px;"><u>Current Link: https://url-shortner-418d4.web.app/{{key}}</u></h4>
+  <h6 style="margin: 30px;">Total Visits: {{logs.length}}</h6>
+
   <hr>
 <div class="row">
   <div class="col-md-4">
@@ -54,7 +56,7 @@
   </div>
 </div>
 <hr>
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6">
     <h4 style ="text-align: center;">Country-Data</h4>
     <table class="main-stats-table" *ngFor ="let count of barChart2Data; index as i">
@@ -82,14 +84,14 @@
       </div>
   </div>
 </div>
-<hr>
+<hr> -->
 <div class="row" >
   <div class="col-md-12">
     <h2 style ="text-align: left;margin: 40px;">All Logs</h2>
-    <table class="main-stats-table" *ngFor ="let log of logs.reverse()">
+    <table class="main-stats-table" *ngFor ="let log of logs">
       <tr>
         <td class="main-stats-table-left">{{log.date +" UTC"}}</td>
-        <td class="main-stats-table-right">{{"browser="+log.browser}}, {{"device type="+log.deviceType}}, {{"os="+log.os}}, {{"country="+log.country}}, {{"state="+log.state}}, {{"city="+log.city}}, {{"latitude="+log.latitude}}, {{"longitude="+log.longitude}}</td>        
+        <td class="main-stats-table-right">{{"browser="+log.browser}}, {{"device type="+log.deviceType}}, {{"os="+log.os}}</td>        
         
       </tr>
       <tr class="main-stats-table-spacer"></tr>

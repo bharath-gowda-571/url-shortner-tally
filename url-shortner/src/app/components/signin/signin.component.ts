@@ -27,7 +27,6 @@ export class SigninComponent implements OnInit {
       console.log(returned)
       if(returned!=""){
         this.error_msg=returned
-
       }
       else{
         if(this.firebaseService.isLoggedIn)

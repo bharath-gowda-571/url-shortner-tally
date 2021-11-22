@@ -10,10 +10,10 @@ export class logs{
     os!: string;
     browser!: string;
     deviceType!: string;
-    city!:string;
-    state!:string;
-    country!:string;
-    latitude!:number;
-    longitude!:number;
+    // city:string = "bangalore";
+    // state:string = "tamilnad";
+    // country:string ="india";
+    // latitude:number = 123;
+    // longitude:number =145;
     date: String =""
 }

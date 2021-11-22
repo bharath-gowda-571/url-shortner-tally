@@ -13,8 +13,6 @@ interface UserLink{
   providedIn: 'root'
 })
 
-
-
 export class FirebaseAuthService {
   isLoggedIn=false
   
@@ -107,7 +105,7 @@ export class FirebaseAuthService {
   }
   async check_if_exists(key:string){
     var res=await this._http.get("https://url-shortner-418d4-default-rtdb.asia-southeast1.firebasedatabase.app/shortened_urls/"+key+"/.json?shallow=true").toPromise()
-    console.log(res)
+    
     if(res==null){
       return false
     }

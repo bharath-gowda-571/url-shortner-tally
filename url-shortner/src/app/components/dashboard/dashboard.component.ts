@@ -66,14 +66,24 @@ randomString(length:number) {
 
   async shortenNewLink(small_url:string,long_link:string){
     var check=await this.firebaseService.check_if_exists(small_url)
+    const reg = '(https://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    var regexp = new RegExp('(https://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')
+    var list_of_predefined_routes=["signin","signup","dashboard","viewstats","error","noConnection"]
     if(long_link==""){
       this.error_msg="Link cannot be empty"
     }
     else if(small_url==""){
       this.error_msg="Link cannot be empty"
     }
+    else if(!regexp.test(long_link))
+    {
+      this.error_msg="Please Enter a valid url"
+    }
     else if(check===true){
-      this.error_msg="Sorry, the link u have chosen already exists"
+      this.error_msg="Sorry, the link you have chosen already exists"
+    }
+    else if(list_of_predefined_routes.includes(small_url)){
+      this.error_msg="Sorry, the link you have is a predefined route"
     }
     else{
       await this.firebaseService.add_new_link(small_url,long_link)

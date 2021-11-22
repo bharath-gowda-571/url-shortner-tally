@@ -114,13 +114,13 @@ export class ViewstatsComponent implements OnInit {
           this.pieChartData3[this.pieChartLabels3.indexOf(log.deviceType)]+=1
         }
 
-        if(!this.barChartLabels.includes(log.country)){
-          this.barChartLabels.push(log.country);
-          this.barChart2Data.push(1);
-        }
-        else{
-          this.barChart2Data[this.barChartLabels.indexOf(log.country)] += 1
-        }
+        // if(!this.barChartLabels.includes(log.country)){
+        //   this.barChartLabels.push(log.country);
+        //   this.barChart2Data.push(1);
+        // }
+        // else{
+        //   this.barChart2Data[this.barChartLabels.indexOf(log.country)] += 1
+        // }
       }
     }
   }
